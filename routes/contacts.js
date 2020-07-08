@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { body, validationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 const auth = require("../middleware/auth");
 
 const User = require("../models/User");
@@ -13,7 +13,7 @@ router.get("/", auth, async (req, res) => {
     try {
         const contacts = await Contact.find({user: req.user.id}).sort({date:-1});
         res.json(contacts);
-        
+
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Server error")
@@ -23,8 +23,24 @@ router.get("/", auth, async (req, res) => {
 //@route    Post api/contacts
 //@desc     Add new contacts
 //@access   Private
-router.post("/", (req, res) => {
-    res.send("Add an contact")
+router.post("/", [auth, [
+    check("name", "Name is required").notEmpty()
+]] , async (req, res) => {
+    const error = validationResult(req)
+    if(!error.isEmpty())
+    {
+        return res.status(400).json({errors: error.array()})
+    }
+    //check if account can be created
+    const {name, email, phone, type} = req.body;
+    try {
+        const newContact = new Contact({name,email,phone,type,user: req.user.id});
+        const contact = await newContact.save();
+        res.json(contact);
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Server error")
+    }
 });
 
 //@route    Put api/contacts/:id
