@@ -60,7 +60,7 @@ router.put("/:id", auth, async (req, res) => {
         //make sure contact belongs to this user
         if(old.user.toString() !== req.user.id)
         {
-            return res.status(401).json({msg:"Hey you, don't temper others' contacts. That's evil."});
+            return res.status(401).json({msg:"Not Authorized"});
         }
 
         const newContact = await Contact.findByIdAndUpdate(req.params.id, 
@@ -75,8 +75,22 @@ router.put("/:id", auth, async (req, res) => {
 //@route    Delete api/contacts/:id
 //@desc     Delete Contact
 //@access   Private
-router.delete("/:id", (req, res) => {
-    res.send("Modify an contact")
+router.delete("/:id", auth, async(req, res) => {
+    try{
+        const old = await Contact.findById(req.params.id);
+        if(!old) return res.status(404).json({msg:"Contact Not Found"});
+        //make sure contact belongs to this user
+        if(old.user.toString() !== req.user.id)
+        {
+            return res.status(401).json({msg:"Not Authorized"});
+        }
+
+        await Contact.findByIdAndRemove(req.params.id);
+        res.json({msg: "Contact removed"});
+    }catch(error){
+        console.error(error.message);
+        res.status(500).send("Server error")
+    }
 });
 
 module.exports = router
