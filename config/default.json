@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://wayne123:zhu123123@contactkeeper.4lucp.mongodb.net/contactdb?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://wayne123:zhu123123@contactkeeper.4lucp.mongodb.net/contactdb?retryWrites=true&w=majority",
+    "jwtSecret" : "strawberryCake"
 }
