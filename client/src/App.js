@@ -6,10 +6,12 @@ import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 
 import ContactState from "./context/contact/ContactState"
+import AuthState from "./context/auth/AuthState"
 
 function App() {
   return (
     <ContactState>
+    <AuthState>
     <BrowserRouter>
       <Fragment>
         <Navbar/>
@@ -21,6 +23,7 @@ function App() {
         </div>
       </Fragment>
     </BrowserRouter>
+    </AuthState>
     </ContactState>
   );
 }
