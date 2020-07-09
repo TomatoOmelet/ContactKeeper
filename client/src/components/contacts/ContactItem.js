@@ -5,8 +5,14 @@ import ContactContext from "../../context/contact/contactContext"
 const ContactItem = ({contact}) => {
     const {id, name, email, phone, type} = contact;
     const contactContext = useContext(ContactContext);
+
     const onDelete = ()=>{
         contactContext.deleteContact(id);
+        contactContext.clearCurrent();
+    }
+
+    const onEdit = ()=>{
+        contactContext.setCurrent(contact);
     }
 
     return (
@@ -25,7 +31,7 @@ const ContactItem = ({contact}) => {
 
             {/**Buttons */}
             <p>
-                <button className = "btn btn-dark btn-sm">Edit</button>
+                <button className = "btn btn-dark btn-sm" onClick={onEdit}>Edit</button>
                 <button className = "btn btn-danger btn-sm" onClick={onDelete}>Delete</button>
             </p>
         </div>

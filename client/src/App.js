@@ -11,7 +11,7 @@ function App() {
   return (
     <ContactState>
     <BrowserRouter>
-      <Fragment className="App">
+      <Fragment>
         <Navbar/>
         <div className="container">
           <Switch>
