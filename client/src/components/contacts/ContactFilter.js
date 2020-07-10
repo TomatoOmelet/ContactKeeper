@@ -18,6 +18,7 @@ const ContactFilter = () => {
         {
             text.current.value = ""
         }
+        //eslint-disable-next-line
     }, [])
 
     return (
