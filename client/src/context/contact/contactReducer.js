@@ -1,4 +1,4 @@
-import {ADD_CONTACT, DELETE_CONTACT, SET_CURRENT, CLEAR_CURRENT, FILTER_CONTACTS, CLEAR_FILTER, UPDATE_CONTACT} from "../types"
+import {ADD_CONTACT, DELETE_CONTACT, SET_CURRENT, CLEAR_CURRENT, FILTER_CONTACTS, CLEAR_FILTER, UPDATE_CONTACT, CONTACT_ERROR} from "../types"
 
 export default (state, action) =>{
     switch(action.type){
@@ -39,6 +39,11 @@ export default (state, action) =>{
             return{
                 ...state,
                 filtered: null
+            }
+        case CONTACT_ERROR:
+            return{
+                ...state,
+                error:action.payload
             }
         default:
             return state;

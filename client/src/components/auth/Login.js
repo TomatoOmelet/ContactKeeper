@@ -15,6 +15,13 @@ const Login = (props) => {
         if(isAuthenticated)
         {
             setAlert("Please log out before log in a new account.","danger")
+        }
+        //eslint-disable-next-line
+    }, [])
+
+    useEffect(()=>{
+        if(isAuthenticated)
+        {
             props.history.push("/");
         }
          

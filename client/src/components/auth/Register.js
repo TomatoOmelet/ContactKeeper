@@ -15,6 +15,13 @@ const Register = (props) => {
         if(isAuthenticated)
         {
             setAlert("Please log out before register a new account.","danger")
+        }
+        //eslint-disable-next-line
+    }, [])
+
+    useEffect(()=>{
+        if(isAuthenticated)
+        {
             props.history.push("/");
         }
          

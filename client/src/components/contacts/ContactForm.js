@@ -50,7 +50,7 @@ const ContactForm = () => {
                 <input type="submit" value={current?"Update Contact":"Add Contact"} className="btn btn-primary btn-block"></input>
             </div>
             {current&&<div>
-                <input type="submit" value="Clear" className="btn btn-light btn-block" onClick={clearEdit}></input>
+                <input type="button" value="Clear" className="btn btn-light btn-block" onClick={clearEdit}></input>
             </div>
             }
         </form>

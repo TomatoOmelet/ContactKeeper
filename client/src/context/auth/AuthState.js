@@ -39,13 +39,12 @@ const AuthState = (props)=>{
 
         try {
             const res = await axios.post("/api/users", formData, config);
-            dispatch({type:REGISTER_SUCCESS, payload:res.data})
+            dispatch({type:REGISTER_SUCCESS, payload:res.data})  
+            loadUser();
         } catch (error) {
             console.error(error.message)
             dispatch({type:REGISTER_FAIL, payload:error.response.data.msg})
         }
-
-        loadUser();
     }
 
     //Login
@@ -57,12 +56,11 @@ const AuthState = (props)=>{
         try {
             const res = await axios.post("/api/auth", formData, config);
             dispatch({type:LOGIN_SUCCESS, payload:res.data})
+            loadUser();
         } catch (error) {
             console.error(error.message)
             dispatch({type:LOGIN_FAIL, payload:error.response.data.msg})
         }
-
-        loadUser();
     }
 
     //Logout
