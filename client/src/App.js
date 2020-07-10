@@ -5,6 +5,8 @@ import Navbar from "./components/layout/Navbar";
 import Home from "./components/pages/Home";
 import About from "./components/pages/About";
 
+import PrivateRoute from "./components/routing/PrivateRoute"
+
 import Register from "./components/auth/Register"
 import Login from "./components/auth/Login"
 import Alerts from "./components/layout/Alerts"
@@ -30,7 +32,7 @@ function App() {
         <div className="container">
           <Alerts/>
           <Switch>
-            <Route exact path="/" component = {Home}/>
+            <PrivateRoute exact path="/" component = {Home}/>
             <Route exact path="/About" component = {About}/>
             <Route exact path="/Register" component = {Register}/>
             <Route exact path="/Login" component = {Login}/>
