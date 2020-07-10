@@ -22,8 +22,9 @@ const AuthState = (props)=>{
             setAuthToken(localStorage.token);
         }
         try {
-            const res = await axios.get("api/auth");
-            dispatch({type:USER_LOADED, payload:res.date})
+            const res = await axios.get("/api/auth");
+            console.log(res);
+            dispatch({type:USER_LOADED, payload:res.data})
         } catch (error) {
             console.error(error.message)
             dispatch({type:AUTH_ERROR})
