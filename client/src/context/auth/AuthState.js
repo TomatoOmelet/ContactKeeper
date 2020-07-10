@@ -1,7 +1,7 @@
 import React, {useReducer} from "react"
 import AuthContext from "./authContext"
 import AuthReducer from "./authReducer"
-import {ADD_CONTACT, DELETE_CONTACT, SET_CURRENT, CLEAR_CURRENT, FILTER_CONTACTS, CLEAR_FILTER, UPDATE_CONTACT} from "../types"
+import {REGISTER_SUCCESS, REGISTER_FAIL, USER_LOADED, AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT, CLEAR_ERRORS} from "../types"
 
 const AuthState = (props)=>{
     const initialState = {
