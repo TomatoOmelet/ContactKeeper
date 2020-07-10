@@ -5,15 +5,16 @@ import AuthContext from "../../context/auth/authContext";
 const Register = (props) => {
     const [user, setUser] = useState({name:"", email:"", password:"", password2:""});
     const {name, email, password, password2} = user;
+
     const alertContext = useContext(AlertContext);
     const authContext = useContext(AuthContext);
-
     const {setAlert} = alertContext;
     const {register, error, clearErrors, isAuthenticated} = authContext;
 
     useEffect(()=>{
         if(isAuthenticated)
         {
+            setAlert("Please log out before register a new account.","danger")
             props.history.push("/");
         }
          
